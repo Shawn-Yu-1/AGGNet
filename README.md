@@ -1,6 +1,6 @@
-# AGG: Attention based Gated Convolutional GAN for Image Inpainting with Prior Guided
+# AGG: Attention-Based Gated Convolutional GAN for Image Inpainting with Prior Guided
 
-AGGNets is a GAN base network for image inpainting. This work is combine gated convouiton with attention mechanism. we also use the prior infomation for guided.
+AGGNets is a GAN-based network for image inpainting. This work is combine gated convouiton with attention mechanism. we also use the prior infomation for guided.
 
 <img src="./samples/celeba_1.png">
 <img src="./samples/celeba_2.png">
@@ -17,4 +17,10 @@ Then
 $git clone 
 $cd ./AGGNets
 $pip install -r requirements.txt
+
 ```
+
+## The paper is under review, and as soon as it is accepted, we will release the codes and pre-trained weights.
+
+## Problems
+if you have any problems, you can report a issue or just send email to <yin950429@hotmail.com>.
