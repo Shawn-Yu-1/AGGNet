@@ -20,7 +20,7 @@ $pip install -r requirements.txt
 
 ```
 
-## The paper is under review, and as soon as it is accepted, we will release the codes and pre-trained weights.
+## The paper has been accepted, and we will release the codes and pre-trained weights as soon as possible.
 
 ## Problems
 if you have any problems, you can report a issue or just send email to <yin950429@hotmail.com>.
