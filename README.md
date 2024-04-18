@@ -1,9 +1,8 @@
-# AGG: Attention based Gated Convolutional Network for Image Inpainting with Prior Guided
+# AGG: Attention-based Gated Convolutional GAN for Image Inpainting with Prior Guided (Neural Computing and Applications)
 
-AGGNets is a GAN base network for image inpainting. This work is combine gated convouiton with attention mechanism. we also use the prior infomation for guided.
+## Xiankang Yu, Lei Dai, Zhihua Chen, and Bin Sheng
 
-<img src="./samples/celeba_1.png">
-<img src="./samples/celeba_2.png">
+[paper]()
 
 ## Requirements
 
@@ -33,6 +32,9 @@ you can download the pretrained weights from:
 |CelebA-HQ(256x256) | 65M| [googleDisk](https://drive.google.com/drive/folders/1WW9Kdx_aYDcLfNcWobpzEqhDuU5Iiveo)|
 PSV(512x512)|    65M    |[googleDisk](https://drive.google.com/drive/folders/1cS-N8vqTjVSSDg7XqG9VESdIGaXFHJwC?usp=sharing)|
 Places2(512x512)| 101M | [googleDisk](https://drive.google.com/drive/folders/1w6Amhdx0bbXInPP7w5sIJ3YT932bSOFd?usp=sharing)|
+
+#### Note: contour prior of pre-trained model is from the full image, then using a mask to get the masked contour map for training, so if you use the contour map from the masked image, there may be some issues.
+
 ## Train
 1. config the train setting in **configs/dataset_xxx.yaml**
 2. when train the different images size, the param to get mask need some change.
@@ -85,9 +87,14 @@ python predict.py --cfg configs/celebaV3.yaml --out_dir ./test_out/celeba/  \
 
 ## Experimental results
 ### the image order is masked 、result and GT
+<img src="./samples/celeba_1.png">
+<img src="./samples/celeba_2.png">
 <img src="./samples/paris sv.png">
 
-## Problems
+## Citation
+```
+
+```
 if you have any problems, you can report a issue or just send email to <yin950429@hotmail.com>.
 
 ## Contributing

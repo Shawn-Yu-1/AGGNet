@@ -20,7 +20,7 @@ from utils import denormalize
 parser = argparse.ArgumentParser()
 parser.add_argument("--cfg", type=str, default='configs/places2_inpaintingV3.yaml', help="the config file path")
 parser.add_argument("--out_dir", default='./test_out/places2_inpainting_0.4-0.6/', help="where to save output")
-parser.add_argument("--model", type=str, default="./results/places2_inpainting_0.2-0.4/models/generator_best_0.6.pth", help="generator model pass")
+parser.add_argument("--model", type=str, default="./results/generator.pth", help="generator model pass")
 parser.add_argument("--image_size", type=int, default=256, help="test image size 256 or 512")
 parser.add_argument("--gpu", type=int, default=0, help="gpu number")
 opt = parser.parse_args()
