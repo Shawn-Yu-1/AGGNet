@@ -30,8 +30,6 @@ class Generator(nn.Module):
         self.layer19 = nn.Conv2d(16, 3, kernel_size=3, stride=1, padding=1)
 
     def forward(self, img, prior, mask):
-        # print(x["image"].shape)
-        # print(x["prior"].shape)
         input = torch.cat([img, prior], dim=1)
         noise = torch.rand(input.shape).cuda()
         input = torch.cat([input * (1 - mask) + noise * mask, mask], dim=1)
@@ -166,8 +164,7 @@ class GatedAttentionNetV3(nn.Module):
                                                                   
     def forward(self, img, prior, mask):
         x = torch.cat([img*(1-mask), prior*(1-mask), mask-0.5], dim=1)
-        # noise = torch.randn(x.shape).to(img.device)
-        # x = torch.cat([x*(1-mask) + noise*mask, mask], dim=1)
+        
         out1 = self.encoder0(self.inconv(x))
         out2 = self.encoder1(out1)
         out3 = self.encoder2(out2)

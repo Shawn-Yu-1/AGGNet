@@ -106,7 +106,6 @@ for epoch in range(config["resume"], config["epoch"]):
     percep = 0
     adv = 0
     pixel = 0
-    style = 0
     t = datetime.now()
     for i, imgs in enumerate(train_data):
         # Configure model input
@@ -130,9 +129,10 @@ for epoch in range(config["resume"], config["epoch"]):
 
         # Adversarial loss (relativistic average GAN)
         loss_GAN = -pred_fake.mean()
-        loss_percep, loss_style = vgg_loss(img, gen_img)
+        
+        loss_percep = vgg_loss(img, gen_img)
         # Total generator loss
-        loss_G = opt.lambda_adv * loss_GAN + loss_pixel * opt.lambda_l1 + loss_percep * 0.4 + loss_style * 200
+        loss_G = opt.lambda_adv * loss_GAN + loss_pixel * opt.lambda_l1 + loss_percep * 0.4 
 
         loss_G.backward()
         optimizer_G.step()
@@ -143,9 +143,8 @@ for epoch in range(config["resume"], config["epoch"]):
 
         optimizer_D.zero_grad()
         
-        gen_img = generator(img, prior, mask)
         pred_real = discriminator(img, mask)
-        pred_fake = discriminator(gen_img, mask)
+        pred_fake = discriminator(gen_img.detach(), mask)
 
         # Total loss
         loss_D = nn.ReLU()(1.0 - pred_real).mean() + nn.ReLU()(1.0 + pred_fake).mean()
@@ -161,7 +160,6 @@ for epoch in range(config["resume"], config["epoch"]):
         adv += loss_GAN.item()
         pixel += loss_pixel.item()
         percep += loss_percep.item()
-        style += loss_style.item()
         if i % 100 == 0:
             print(f"Epoch:{epoch+1}/{opt.epochs}, iter: {i}, t/iter: {(datetime.now() - t_start) / (i+1)}")
 
@@ -170,12 +168,11 @@ for epoch in range(config["resume"], config["epoch"]):
     avg_adv_loss = adv / len(train_data)
     avg_pixel_loss = pixel / len(train_data)
     avg_percep_loss = percep / len(train_data)
-    avg_style_loss = style / len(train_data)
 
     logging.info(
-        'Epoch:{1}/{2} D_loss:{3} G_loss:{4} adv:{5} pixel:{6} percep_loss:{7} style_loss:{8} time:{0}'.format(
+        'Epoch:{1}/{2} D_loss:{3} G_loss:{4} adv:{5} pixel:{6} percep_loss:{7} time:{0}'.format(
             datetime.now() - t, epoch + 1, opt.epochs, avg_D_loss,
-            avg_G_loss, avg_adv_loss, avg_pixel_loss, avg_percep_loss, avg_style_loss))
+            avg_G_loss, avg_adv_loss, avg_pixel_loss, avg_percep_loss))
     
     if epoch % config["eval_inter"] == 0:
         generator.eval()

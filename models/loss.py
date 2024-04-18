@@ -28,13 +28,13 @@ class PerceptualLoss(nn.Module):
         percep_loss += self.weights[2] * self.criterion(x_vgg['relu3_1'], y_vgg['relu3_1'])
         percep_loss += self.weights[3] * self.criterion(x_vgg['relu4_1'], y_vgg['relu4_1'])
         percep_loss += self.weights[4] * self.criterion(x_vgg['relu5_1'], y_vgg['relu5_1'])
-        style_loss += self.criterion(gram_matrix(x_vgg['relu2_2']), gram_matrix(y_vgg['relu2_2']))
-        style_loss += self.criterion(gram_matrix(x_vgg['relu3_4']), gram_matrix(y_vgg['relu3_4']))
-        style_loss += self.criterion(gram_matrix(x_vgg['relu4_4']), gram_matrix(y_vgg['relu4_4']))
-        style_loss += self.criterion(gram_matrix(x_vgg['relu5_2']), gram_matrix(y_vgg['relu5_2']))
+        # style_loss += self.criterion(gram_matrix(x_vgg['relu2_2']), gram_matrix(y_vgg['relu2_2']))
+        # style_loss += self.criterion(gram_matrix(x_vgg['relu3_4']), gram_matrix(y_vgg['relu3_4']))
+        # style_loss += self.criterion(gram_matrix(x_vgg['relu4_4']), gram_matrix(y_vgg['relu4_4']))
+        # style_loss += self.criterion(gram_matrix(x_vgg['relu5_2']), gram_matrix(y_vgg['relu5_2']))
 
 
-        return (percep_loss, style_loss)
+        return percep_loss
 
 
 

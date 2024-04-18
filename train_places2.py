@@ -105,7 +105,6 @@ for epoch in range(config["resume"], config["epoch"]):
     percep = 0
     adv = 0
     pixel = 0
-    style = 0
     t = datetime.now()
     for i, imgs in enumerate(train_data):
         # Configure model input
@@ -128,7 +127,7 @@ for epoch in range(config["resume"], config["epoch"]):
         loss_GAN = -pred_fake.mean()
         loss_percep, loss_style = vgg_loss(img, gen_img)
         # Total generator loss
-        loss_G = opt.lambda_adv * loss_GAN + loss_pixel * opt.lambda_l1 + loss_percep * 0.5 + loss_style * 200
+        loss_G = opt.lambda_adv * loss_GAN + loss_pixel * opt.lambda_l1 + loss_percep * 0.5 
 
         loss_G.backward()
         optimizer_G.step()
@@ -157,7 +156,6 @@ for epoch in range(config["resume"], config["epoch"]):
         adv += loss_GAN.item()
         pixel += loss_pixel.item()
         percep += loss_percep.item()
-        style += loss_style.item()
         if i % 1000 == 0:
             print(f"Epoch:{epoch+1}/{opt.epochs}, iter: {i}, t/iter: {(datetime.now() - t_start) / (i+1)}")
         iter += 1
@@ -167,20 +165,18 @@ for epoch in range(config["resume"], config["epoch"]):
             avg_adv_loss = adv / 2000
             avg_pixel_loss = pixel / 2000
             avg_percep_loss = percep / 2000
-            avg_style_loss = style / 2000
 
             logging.info(
-                'Epoch:{1}/{2} iter:{9} D_loss:{3} G_loss:{4} adv:{5} pixel:{6} percep_loss:{7} style_loss:{8} time:{0}'.format(
+                'Epoch:{1}/{2} iter:{8} D_loss:{3} G_loss:{4} adv:{5} pixel:{6} percep_loss:{7} time:{0}'.format(
                     datetime.now() - t, epoch + 1, opt.epochs, avg_D_loss,
-                    avg_G_loss, avg_adv_loss, avg_pixel_loss, avg_percep_loss, avg_style_loss, iter))
+                    avg_G_loss, avg_adv_loss, avg_pixel_loss, avg_percep_loss, iter))
             
             D_loss = 0
             G_loss = 0
             percep = 0
             adv = 0
             pixel = 0
-            style = 0
-            
+
         if iter % config["eval_iter"] == 0:
             generator.eval()
             with torch.no_grad():

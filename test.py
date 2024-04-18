@@ -21,7 +21,7 @@ from metrics import ssim, cal_fid, get_feature_images, PSNR, get_feature_images_
 parser = argparse.ArgumentParser()
 parser.add_argument("--cfg", type=str, default='configs/celeba_inpaintingV3.yaml', help="the config file path")
 parser.add_argument("--out_dir", default='./test_out/celeba_0.4-0.6', help="where to save output")
-parser.add_argument("--model", type=str, default="./results/celeba_V3/models/generator_150.pth", help="generator model pass")
+parser.add_argument("--model", type=str, default="./generator_150.pth", help="generator model pass")
 parser.add_argument("--image_size", type=int, default=256, help="test image size 256 or 512")
 parser.add_argument("--gpu", type=int, default=0, help="gpu number")
 opt = parser.parse_args()
