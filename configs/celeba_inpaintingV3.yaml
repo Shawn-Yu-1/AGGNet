@@ -1,0 +1,55 @@
+out_dir: "./results/celeba_V3"
+seed: 42
+
+models:
+    generator:
+            name: "AGGV3"
+            config:
+                embed: 4
+            
+
+    discrimnator:
+
+
+
+
+train:
+    name: "inpainting"
+    batch_size: 16
+    num_work: 4
+    config:
+        data_root: "/data/dataset/CelebA-HQ/train/"
+        prior_root: "/data/dataset/CelebA-HQ/train_canny/"
+        mask_config: 
+                  mask_mode: "irregular"
+                  root: "./mask/irregular/"
+        data_len: -1
+        image_size: [256, 256]
+        is_train: True
+
+val:
+    name: "inpainting"
+    batch_size: 1
+    num_work: 2
+    config:
+        data_root: "/data/dataset/CelebA-HQ/val/"
+        prior_root: "/data/dataset/CelebA-HQ/val_canny/"
+        mask_config: 
+                  mask_mode: "manual"
+                  root: "./mask/irregular/0.2-0.4/"
+        data_len: 400
+        image_size: [256, 256]
+        is_train: False
+
+
+optim:
+    lr_g: 0.00005
+    lr_d: 0.000005
+    b1: 0.5
+    b2: 0.9
+  
+eval_inter: 5
+resume: 0
+epoch: 150
+save_model: 10
+sample_inter: 1

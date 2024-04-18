@@ -1,0 +1,53 @@
+out_dir: "./results/places2_inpainting"
+seed: 42
+
+models:
+    generator:
+            name: "AGGV3"
+            config:
+                embed: 4
+
+    discrimnator:
+
+
+
+
+train:
+    name: "inpainting"
+    batch_size: 16
+    num_work: 4
+    config:
+        data_root: "/data/dataset/places2/train/"
+        prior_root: "/data/dataset/places2/train_contour/"
+        mask_config: 
+                  mask_mode: "irregular"
+                  root: "./mask/"
+        data_len: -1
+        image_size: [256, 256]
+
+val:
+    name: "inpainting"
+    batch_size: 1
+    num_work: 2
+    config:
+        data_root: "/data/dataset/places2/val/"
+        prior_root: "/data/dataset/places2/val_contour/"
+        mask_config: 
+                  mask_mode: "manual"
+                  root: "./mask/irregular/0.4-0.6/"
+        data_len: 400
+        image_size: [256, 256]
+
+
+optim:
+    lr_g: 0.00002
+    lr_d: 0.000002
+    b1: 0.5
+    b2: 0.9
+  
+eval_inter: 5
+resume: 50
+epoch: 150
+iter: 120000
+save_model: 10
+sample_inter: 1

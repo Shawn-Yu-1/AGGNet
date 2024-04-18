@@ -1,0 +1,11 @@
+.idea/
+.DS_Store/
+results/
+__pycache__/
+mask/
+test_out/
+*.pt
+*.pth
+experience.md
+test_image/
+compare/

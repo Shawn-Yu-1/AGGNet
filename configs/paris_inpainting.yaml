@@ -1,0 +1,55 @@
+out_dir: "./results/paris"
+seed: 42
+
+models:
+    generator:
+            name: "AGGV3"
+            config:
+                embed: 4
+            
+
+    discrimnator:
+
+
+
+
+train:
+    name: "inpainting"
+    batch_size: 8
+    num_work: 4
+    config:
+        data_root: "/home/yxk/data/paris/train/"
+        prior_root: "/home/yxk/data/paris/train_canny/"
+        mask_config: 
+                  mask_mode: "irregular"
+                  root: "./mask/irregular/"
+        data_len: -1
+        image_size: [512, 512]
+        is_train: True
+
+val:
+    name: "inpainting"
+    batch_size: 1
+    num_work: 2
+    config:
+        data_root: "/home/yxk/data/paris/val/"
+        prior_root: "/home/yxk/data/paris/val_canny/"
+        mask_config: 
+                  mask_mode: "manual"
+                  root: "./mask/irregular/0.2-0.4/"
+        data_len: 400
+        image_size: [512, 512]
+        is_train: False
+
+
+optim:
+    lr_g: 0.00001
+    lr_d: 0.000001
+    b1: 0.5
+    b2: 0.9
+  
+eval_inter: 1
+resume: 150
+epoch: 200
+save_model: 10
+sample_inter: 1
