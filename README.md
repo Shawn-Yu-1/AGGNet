@@ -2,7 +2,12 @@
 
 ## Xiankang Yu, Lei Dai, Zhihua Chen, and Bin Sheng
 
-[paper]()
+[paper](https://link.springer.com/article/10.1007/s00521-024-09785-w)
+
+#### Figures 5, 6, 7, and 8 are mismatched with titles in the first edition of paper by the publisher, and the correct layout is shown below.
+
+<img src="./samples/correct layout.png">
+
 
 ## Requirements
 
@@ -93,9 +98,16 @@ python predict.py --cfg configs/celebaV3.yaml --out_dir ./test_out/celeba/  \
 
 ## Citation
 ```
+@article{yu2024agg,
+  title={AGG: attention-based gated convolutional GAN with prior guidance for image inpainting},
+  author={Yu, Xiankang and Dai, Lei and Chen, Zhihua and Sheng, Bin},
+  journal={Neural Computing and Applications},
+  pages={1--17},
+  year={2024},
+  publisher={Springer}
+}
 
 ```
 if you have any problems, you can report a issue or just send email to <yin950429@hotmail.com>.
 
-## Contributing
 
