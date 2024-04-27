@@ -19,7 +19,7 @@
 Then 
 ```
 $git clone 
-$cd ./AGGNets
+$cd ./AGGNet
 $pip install -r requirements.txt
 ```
 
