@@ -6,7 +6,7 @@
 
 #### Figures 5, 6, 7, and 8 are mismatched with titles in the first edition of paper by the publisher, and the correct layout is shown below.
 
-<img src="./samples/correct layout.png">
+<img src="./samples/correct_layout.png">
 
 
 ## Requirements
