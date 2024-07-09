@@ -98,7 +98,9 @@ python predict.py --cfg configs/celebaV3.yaml --out_dir ./test_out/celeba/  \
   title={AGG: attention-based gated convolutional GAN with prior guidance for image inpainting},
   author={Yu, Xiankang and Dai, Lei and Chen, Zhihua and Sheng, Bin},
   journal={Neural Computing and Applications},
-  pages={1--16},
+  volume={36},
+  number={20},
+  pages={12589--12604},
   year={2024},
   publisher={Springer}
 }
